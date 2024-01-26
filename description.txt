@@ -2,3 +2,6 @@
 
     WEBSOCKETS: They are communication protocol and they have Full Duplex Communication which means the connection will persists and the clients connected to it can send and recieve message at same time which means it is a two way communication. The benefit is that it has low latency as we dont have to create the connection again and again.
 
+    ASGI: Asynchronous Gateway interface which allows us to handle asynchronous communication in real time like the web sockets.
+        -> Asynchronous Communication: Unlike other traditional webservers like Apache or nginx which handle synchronous requests (request-response), the ASGI can handle multiple connections concurrently.
+        -> Django channels adds the support of web sockets into the django applications.
