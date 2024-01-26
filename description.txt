@@ -1,0 +1,4 @@
+=> Definations
+
+    WEBSOCKETS: They are communication protocol and they have Full Duplex Communication which means the connection will persists and the clients connected to it can send and recieve message at same time which means it is a two way communication. The benefit is that it has low latency as we dont have to create the connection again and again.
+
