@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 class Topic(models.Model):
     name = models.CharField(max_length=255)
@@ -20,7 +20,7 @@ class Channel(models.Model):
         return f"{self.name}({self.topic.name})"
 
 class Message(models.Model):
-    sender = models.ForeignKey(User, related_name="Message_Sender", on_delete=models.CASCADE)
+    sender = models.ForeignKey(get_user_model(), related_name="Message_Sender", on_delete=models.CASCADE)
     channel = models.ForeignKey(Channel, related_name="messages", on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add = True)
     is_read = models.BooleanField(default=False)

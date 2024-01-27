@@ -7,5 +7,7 @@
         -> Django channels adds the support of web sockets into the django applications.
         -> So this asgi.py application will tell django what to do when a new request comes to it.
 
+    ABSTRACT VS ABSTRACTBASEUSER: The difference is that when you need a lot of flexibilty than go with the abstractbaseuser as here we need to define all the fields and because of which it becomes a bit complex. Where as the abstract user will have the combo from the USER AND ABSTACTBASE, it will provide pre defined stucture we can modify but not much. We can write custome USER manager for both of them.
+
 => Models flow
     TOPIC -> CHANNEL -> MESSAGES (This will be overall structure)

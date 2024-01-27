@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'channels',
     # INTERNAL APPS
     'app',
+    'account',
 ]
 
 MIDDLEWARE = [
