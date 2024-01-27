@@ -5,3 +5,7 @@
     ASGI: Asynchronous Gateway interface which allows us to handle asynchronous communication in real time like the web sockets.
         -> Asynchronous Communication: Unlike other traditional webservers like Apache or nginx which handle synchronous requests (request-response), the ASGI can handle multiple connections concurrently.
         -> Django channels adds the support of web sockets into the django applications.
+        -> So this asgi.py application will tell django what to do when a new request comes to it.
+
+=> Models flow
+    TOPIC -> CHANNEL -> MESSAGES (This will be overall structure)
