@@ -5,8 +5,8 @@ from django.db.models import Q
 class RegisterationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id","username", "password", "email"]
-        extra_kwargs = {"password":{"read_only":True}}
+        fields = ["id","username", "email","password"]
+        # extra_kwargs = {"password":{"read_only":True}}
 
     def validate(self, data):
         """
@@ -28,7 +28,7 @@ class RegisterationSerializer(serializers.ModelSerializer):
             email=validated_data["email"],
             password=validated_data["password"] #need to hash the password and store in future
         )
-        return f"account created for: {user.username}"
+        return user
 
     def user_exists(self, username,email):
         return User.objects.filter(Q(username=username) | Q(email=email)).exists()

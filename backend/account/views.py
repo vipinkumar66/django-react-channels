@@ -1,15 +1,33 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from models import Account
 from rest_framework.permissions import IsAuthenticated
-from serializers import RegisterationSerializer
+from rest_framework.exceptions import MethodNotAllowed
+from .serializers import RegisterationSerializer
 
-class RegisterationSerializer(viewsets.ModelViewSet):
+class RegisterationViewset(viewsets.ModelViewSet):
     """
     We will register user after some basic validations
     Viewset: as it provides much functionality in a one go
+    It should have the queryset or it should overwrite the getqueryset method
+    otherwise it will thow the assertion error this is due to the model view set
     """
     serializer_class = RegisterationSerializer
+
+    def get(self, request, *args, **kwargs):
+        raise MethodNotAllowed("GET method is not allowed for registration.")
+
+    def put(self, request, *args, **kwargs):
+        raise MethodNotAllowed("PUT method is not allowed for registration.")
+
+    def patch(self, request, *args, **kwargs):
+        raise MethodNotAllowed("PATCH method is not allowed for registration.")
+
+    def delete(self, request, *args, **kwargs):
+        raise MethodNotAllowed("DELETE method is not allowed for registration.")
+
+    def get_queryset(self):
+        return None
+
     def create(self, request, *args, **kwargs):
         """
         we get the serializer from serializer class than give it data
@@ -19,9 +37,10 @@ class RegisterationSerializer(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        self.perform_create(serializer)
+        user = serializer.save()
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response({"message":f"Account created for {user.username}"},
+                        status=status.HTTP_201_CREATED, headers=headers)
 
 
 

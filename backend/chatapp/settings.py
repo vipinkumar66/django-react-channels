@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # EXTERNAL APPS
     'channels',
+    'rest_framework',
     # INTERNAL APPS
     'app',
     'account',
