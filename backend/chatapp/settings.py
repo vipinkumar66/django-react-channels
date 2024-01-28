@@ -117,3 +117,14 @@ CHANNEL_LAYERS = {
         'BACKEND':'channels.layers.InMemoryChannelLayer'
     }
 }
+
+from datetime import timedelta
+# This part is for  the token part
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(seconds=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    # jwt cookie
+    "ACCESS_TOKEN_NAME":"access_token",
+    "REFRESH_TOKEN_NAME":"refresh_token",
+    "JWT_COOKIE_SAMESITE":"Lax"
+}

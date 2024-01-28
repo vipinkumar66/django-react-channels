@@ -11,3 +11,12 @@
 
 => Models flow
     TOPIC -> CHANNEL -> MESSAGES (This will be overall structure)
+
+=> Viewset(create method) and serializer(create method)
+    -> When to a viewset we choose a model viewset than we have to give the query to it otherwise it is going to throw the attribute error.
+    -> Create method of the viewset will be called to which we are going to give our serializer and the data, and then we call the is_valid method which will see if the data is valid according to the serializer.
+    -> If it is valid than it calls the perform_create which is related to the serializer create method, the serializer create will create the instance the perform_create will look for any errors or if we want to modify before or after the creation.
+    -> And if we don't explicitly call this method still it will get called as it is called automatically once the create function of the viewset is invoked.
+
+=> PERMISSIONS
+    -> They are always run at the start of the code and it checks via: request.user and request.auth
