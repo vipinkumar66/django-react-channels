@@ -18,5 +18,10 @@
     -> If it is valid than it calls the perform_create which is related to the serializer create method, the serializer create will create the instance the perform_create will look for any errors or if we want to modify before or after the creation.
     -> And if we don't explicitly call this method still it will get called as it is called automatically once the create function of the viewset is invoked.
 
+=> TOKENOBTAINPAIRVIEW
+    -> To use th jwt token part, first of all we need to add the SIMPLE_JWT part to the settings and do some modifications
+    -> Second is that we need to use the token obtain pair view and also add a mixin to the class so tht we can add the cookies generated to the application cookie part.
+    -> The role is that it provides both access and refresh token to the client and that to after doing the validation, and we dont have to add this part manually.
+
 => PERMISSIONS
     -> They are always run at the start of the code and it checks via: request.user and request.auth

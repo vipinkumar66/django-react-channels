@@ -46,8 +46,18 @@ class RegisterationViewset(viewsets.ModelViewSet):
                         status=status.HTTP_201_CREATED, headers=headers)
 
 class JWTSetCookieMixin:
+    """
+    The mixins: they are reusable piece of code that provides additional
+    functionality to the code without adding extra line of code again and again
+    """
     def finalize_response(self, request, response, *args, **kwargs):
+        """
+        The finalize response is provide by django rf and it basically allow us to
+        add some more details to the response before it is sent to the
+        client.
+        """
         if response.data.get("access"):
+            # Here we are setting the access token as a cookies to the browser
             response.set_cookie(
                 settings.SIMPLE_JWT["ACCESS_TOKEN_NAME"], response.data["access"],
                 max_age = settings.SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"],
@@ -55,6 +65,7 @@ class JWTSetCookieMixin:
                 samesite = settings.SIMPLE_JWT["JWT_COOKIE_SAMESITE"]
             )
         if response.data.get("refresh"):
+            # Here aso we are adding the refresh token as cookies to the browser
             response.set_cookie(
                 settings.SIMPLE_JWT["REFRESH_TOKEN_NAME"], response.data["refresh"],
                 max_age = settings.SIMPLE_JWT["REFRESH_TOKEN_LIFETIME"],
@@ -67,6 +78,10 @@ class JWTSetCookieMixin:
 
 
 class JWTCookieTokenObtainPairView(JWTSetCookieMixin, TokenObtainPairView):
+    """
+    The tokenobtainpair view take care of the authentication of the credentials
+    so we dont have to think about it.
+    """
     pass
 
 
